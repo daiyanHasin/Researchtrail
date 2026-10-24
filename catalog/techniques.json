@@ -1,0 +1,1371 @@
+{
+ "version": 1,
+ "stages": [
+  {
+   "id": "data",
+   "name": "Data"
+  },
+  {
+   "id": "preprocessing",
+   "name": "Preprocessing"
+  },
+  {
+   "id": "features",
+   "name": "Feature engineering"
+  },
+  {
+   "id": "model",
+   "name": "Model"
+  },
+  {
+   "id": "training",
+   "name": "Training"
+  },
+  {
+   "id": "evaluation",
+   "name": "Evaluation"
+  }
+ ],
+ "datasets": [
+  "MNIST",
+  "Fashion-MNIST",
+  "CIFAR-10",
+  "CIFAR-100",
+  "ImageNet",
+  "Iris",
+  "Titanic",
+  "Adult",
+  "Boston Housing",
+  "California Housing",
+  "Wine Quality",
+  "Breast Cancer Wisconsin",
+  "Pima Indians Diabetes",
+  "Heart Disease",
+  "German Credit",
+  "Bank Marketing",
+  "Credit Card Fraud Detection",
+  "PaySim",
+  "Elliptic",
+  "MIMIC-III",
+  "MIMIC-IV",
+  "UCI",
+  "Kaggle",
+  "OpenML",
+  "Higgs",
+  "Covertype",
+  "Telco Customer Churn",
+  "Lending Club",
+  "Home Credit",
+  "Yelp",
+  "IMDB",
+  "Amazon Reviews",
+  "SST-2",
+  "AG News",
+  "CoNLL-2003",
+  "SQuAD",
+  "COCO",
+  "Cora",
+  "Citeseer",
+  "PubMed"
+ ],
+ "techniques": [
+  {
+   "id": "split_holdout",
+   "name": "Train/test hold-out split",
+   "stage": "data",
+   "phrases": [
+    "train-test split",
+    "train test split",
+    "training and test sets",
+    "training and testing sets",
+    "held-out test set",
+    "hold-out set",
+    "holdout set"
+   ],
+   "code": [
+    "train_test_split"
+   ]
+  },
+  {
+   "id": "split_time",
+   "name": "Time-based split",
+   "stage": "data",
+   "phrases": [
+    "time-based split",
+    "temporal split",
+    "chronological split",
+    "out-of-time",
+    "split by time"
+   ],
+   "code": [
+    "TimeSeriesSplit"
+   ]
+  },
+  {
+   "id": "sample_subset",
+   "name": "Subsampling the data",
+   "stage": "data",
+   "phrases": [
+    "subsampled",
+    "random subset",
+    "downsampled the dataset"
+   ],
+   "code": [
+    "sample"
+   ]
+  },
+  {
+   "id": "missing_drop",
+   "name": "Dropping missing values",
+   "stage": "preprocessing",
+   "phrases": [
+    "dropped missing",
+    "removed missing",
+    "remove missing values",
+    "rows with missing values",
+    "incomplete records",
+    "listwise deletion"
+   ],
+   "code": [
+    "dropna"
+   ]
+  },
+  {
+   "id": "impute_simple",
+   "name": "Mean / median / constant imputation",
+   "stage": "preprocessing",
+   "phrases": [
+    "mean imputation",
+    "median imputation",
+    "imputed with the mean",
+    "imputed with the median",
+    "filled missing values",
+    "missing values were imputed",
+    "mode imputation"
+   ],
+   "code": [
+    "SimpleImputer",
+    "fillna"
+   ]
+  },
+  {
+   "id": "impute_knn",
+   "name": "KNN imputation",
+   "stage": "preprocessing",
+   "phrases": [
+    "knn imputation",
+    "k-nearest neighbour imputation",
+    "k-nearest neighbor imputation"
+   ],
+   "code": [
+    "KNNImputer"
+   ]
+  },
+  {
+   "id": "impute_iterative",
+   "name": "Iterative / MICE imputation",
+   "stage": "preprocessing",
+   "phrases": [
+    "mice",
+    "iterative imputation",
+    "multiple imputation"
+   ],
+   "code": [
+    "IterativeImputer"
+   ]
+  },
+  {
+   "id": "dedup",
+   "name": "Removing duplicates",
+   "stage": "preprocessing",
+   "phrases": [
+    "duplicate records",
+    "duplicates were removed",
+    "removed duplicates",
+    "deduplication"
+   ],
+   "code": [
+    "drop_duplicates"
+   ]
+  },
+  {
+   "id": "outlier_removal",
+   "name": "Outlier removal",
+   "stage": "preprocessing",
+   "phrases": [
+    "outlier removal",
+    "outliers were removed",
+    "removed outliers",
+    "interquartile range",
+    "iqr",
+    "z-score threshold"
+   ],
+   "code": [
+    "LocalOutlierFactor",
+    "zscore"
+   ]
+  },
+  {
+   "id": "scale_standard",
+   "name": "Standardisation (z-score)",
+   "stage": "preprocessing",
+   "phrases": [
+    "standardization",
+    "standardisation",
+    "standardized",
+    "z-score normalization",
+    "standard scaler",
+    "zero mean and unit variance"
+   ],
+   "code": [
+    "StandardScaler"
+   ]
+  },
+  {
+   "id": "scale_minmax",
+   "name": "Min-max scaling",
+   "stage": "preprocessing",
+   "phrases": [
+    "min-max",
+    "min max normalization",
+    "min-max normalization",
+    "minmax scaling",
+    "scaled to the range"
+   ],
+   "code": [
+    "MinMaxScaler"
+   ]
+  },
+  {
+   "id": "scale_robust",
+   "name": "Robust scaling",
+   "stage": "preprocessing",
+   "phrases": [
+    "robust scaler",
+    "robust scaling"
+   ],
+   "code": [
+    "RobustScaler"
+   ]
+  },
+  {
+   "id": "log_transform",
+   "name": "Log transform",
+   "stage": "preprocessing",
+   "phrases": [
+    "log transform",
+    "log transformation",
+    "logarithmic transformation",
+    "log-transformed"
+   ],
+   "code": [
+    "log1p",
+    "log"
+   ]
+  },
+  {
+   "id": "power_transform",
+   "name": "Box-Cox / Yeo-Johnson transform",
+   "stage": "preprocessing",
+   "phrases": [
+    "box-cox",
+    "yeo-johnson",
+    "power transform"
+   ],
+   "code": [
+    "PowerTransformer",
+    "boxcox"
+   ]
+  },
+  {
+   "id": "oversample_smote",
+   "name": "SMOTE oversampling",
+   "stage": "preprocessing",
+   "phrases": [
+    "smote",
+    "synthetic minority over-sampling",
+    "synthetic minority oversampling"
+   ],
+   "code": [
+    "SMOTE",
+    "BorderlineSMOTE",
+    "SVMSMOTE",
+    "SMOTENC"
+   ]
+  },
+  {
+   "id": "oversample_adasyn",
+   "name": "ADASYN oversampling",
+   "stage": "preprocessing",
+   "phrases": [
+    "adasyn"
+   ],
+   "code": [
+    "ADASYN"
+   ]
+  },
+  {
+   "id": "oversample_random",
+   "name": "Random oversampling",
+   "stage": "preprocessing",
+   "phrases": [
+    "random oversampling",
+    "random over-sampling",
+    "oversampled the minority"
+   ],
+   "code": [
+    "RandomOverSampler"
+   ]
+  },
+  {
+   "id": "undersample",
+   "name": "Undersampling",
+   "stage": "preprocessing",
+   "phrases": [
+    "random undersampling",
+    "random under-sampling",
+    "undersampled the majority",
+    "undersampling",
+    "near miss"
+   ],
+   "code": [
+    "RandomUnderSampler",
+    "NearMiss",
+    "TomekLinks"
+   ]
+  },
+  {
+   "id": "encode_onehot",
+   "name": "One-hot encoding",
+   "stage": "features",
+   "phrases": [
+    "one-hot",
+    "one hot encoding",
+    "dummy variables",
+    "dummy encoding"
+   ],
+   "code": [
+    "get_dummies",
+    "OneHotEncoder"
+   ]
+  },
+  {
+   "id": "encode_label",
+   "name": "Label / ordinal encoding",
+   "stage": "features",
+   "phrases": [
+    "label encoding",
+    "ordinal encoding",
+    "label encoded",
+    "integer encoding"
+   ],
+   "code": [
+    "LabelEncoder",
+    "OrdinalEncoder",
+    "factorize"
+   ]
+  },
+  {
+   "id": "encode_target",
+   "name": "Target / mean encoding",
+   "stage": "features",
+   "phrases": [
+    "target encoding",
+    "mean encoding",
+    "likelihood encoding"
+   ],
+   "code": [
+    "TargetEncoder"
+   ]
+  },
+  {
+   "id": "encode_frequency",
+   "name": "Frequency / count encoding",
+   "stage": "features",
+   "phrases": [
+    "frequency encoding",
+    "count encoding",
+    "frequency encoded"
+   ],
+   "code": [
+    "value_counts&map",
+    "CountEncoder"
+   ]
+  },
+  {
+   "id": "feat_aggregation",
+   "name": "Group aggregation features",
+   "stage": "features",
+   "phrases": [
+    "aggregation features",
+    "aggregated features",
+    "group statistics",
+    "group-level statistics",
+    "aggregated over"
+   ],
+   "code": [
+    "groupby&transform",
+    "groupby&agg",
+    "groupby&mean",
+    "groupby&count"
+   ]
+  },
+  {
+   "id": "feat_time",
+   "name": "Time-based features",
+   "stage": "features",
+   "phrases": [
+    "time-based features",
+    "temporal features",
+    "hour of day",
+    "day of week",
+    "time since",
+    "time difference",
+    "time elapsed"
+   ],
+   "code": [
+    "dayofweek",
+    "weekday",
+    "dt&hour",
+    "dt&month",
+    "dt&day"
+   ]
+  },
+  {
+   "id": "feat_lag",
+   "name": "Lag / rolling-window features",
+   "stage": "features",
+   "phrases": [
+    "lag features",
+    "lagged features",
+    "rolling mean",
+    "rolling window",
+    "moving average",
+    "sliding window"
+   ],
+   "code": [
+    "shift",
+    "rolling"
+   ]
+  },
+  {
+   "id": "feat_interaction",
+   "name": "Interaction / polynomial features",
+   "stage": "features",
+   "phrases": [
+    "interaction features",
+    "feature crosses",
+    "feature interactions",
+    "polynomial features"
+   ],
+   "code": [
+    "PolynomialFeatures"
+   ]
+  },
+  {
+   "id": "feat_binning",
+   "name": "Binning / discretisation",
+   "stage": "features",
+   "phrases": [
+    "binning",
+    "discretization",
+    "discretisation",
+    "discretized",
+    "bucketized"
+   ],
+   "code": [
+    "cut",
+    "qcut",
+    "KBinsDiscretizer"
+   ]
+  },
+  {
+   "id": "feat_tfidf",
+   "name": "TF-IDF text features",
+   "stage": "features",
+   "phrases": [
+    "tf-idf",
+    "tfidf",
+    "term frequency-inverse document frequency"
+   ],
+   "code": [
+    "TfidfVectorizer"
+   ]
+  },
+  {
+   "id": "feat_bow",
+   "name": "Bag-of-words features",
+   "stage": "features",
+   "phrases": [
+    "bag of words",
+    "bag-of-words",
+    "count vectorizer"
+   ],
+   "code": [
+    "CountVectorizer"
+   ]
+  },
+  {
+   "id": "feat_embedding",
+   "name": "Learned embeddings",
+   "stage": "features",
+   "phrases": [
+    "entity embedding",
+    "entity embeddings",
+    "embedding layer"
+   ],
+   "code": [
+    "Embedding"
+   ]
+  },
+  {
+   "id": "feat_graph",
+   "name": "Graph features",
+   "stage": "features",
+   "phrases": [
+    "graph features",
+    "node degree",
+    "pagerank",
+    "network features",
+    "graph-based features"
+   ],
+   "code": [
+    "degree",
+    "pagerank"
+   ]
+  },
+  {
+   "id": "select_filter",
+   "name": "Filter feature selection",
+   "stage": "features",
+   "phrases": [
+    "chi-square",
+    "chi-squared",
+    "mutual information",
+    "anova f-test",
+    "univariate feature selection",
+    "correlation-based feature selection"
+   ],
+   "code": [
+    "SelectKBest",
+    "SelectPercentile",
+    "mutual_info_classif",
+    "chi2",
+    "f_classif"
+   ]
+  },
+  {
+   "id": "select_wrapper",
+   "name": "Wrapper feature selection (RFE etc.)",
+   "stage": "features",
+   "phrases": [
+    "recursive feature elimination",
+    "rfe",
+    "forward selection",
+    "backward elimination",
+    "sequential feature selection"
+   ],
+   "code": [
+    "RFE",
+    "RFECV",
+    "SequentialFeatureSelector"
+   ]
+  },
+  {
+   "id": "select_importance",
+   "name": "Importance-based selection",
+   "stage": "features",
+   "phrases": [
+    "feature importance",
+    "importance-based selection",
+    "selected features based on importance"
+   ],
+   "code": [
+    "SelectFromModel",
+    "feature_importances_"
+   ]
+  },
+  {
+   "id": "drop_correlated",
+   "name": "Removing correlated features",
+   "stage": "features",
+   "phrases": [
+    "highly correlated features",
+    "multicollinearity",
+    "variance inflation factor",
+    "vif"
+   ],
+   "code": [
+    "variance_inflation_factor",
+    "corr"
+   ]
+  },
+  {
+   "id": "dim_pca",
+   "name": "PCA",
+   "stage": "features",
+   "phrases": [
+    "principal component analysis",
+    "pca",
+    "principal components"
+   ],
+   "code": [
+    "PCA"
+   ]
+  },
+  {
+   "id": "dim_svd",
+   "name": "Truncated SVD",
+   "stage": "features",
+   "phrases": [
+    "truncated svd",
+    "singular value decomposition",
+    "latent semantic analysis"
+   ],
+   "code": [
+    "TruncatedSVD"
+   ]
+  },
+  {
+   "id": "dim_manifold",
+   "name": "t-SNE / UMAP",
+   "stage": "features",
+   "phrases": [
+    "t-sne",
+    "tsne",
+    "umap"
+   ],
+   "code": [
+    "TSNE",
+    "UMAP"
+   ]
+  },
+  {
+   "id": "model_logreg",
+   "name": "Logistic regression",
+   "stage": "model",
+   "phrases": [
+    "logistic regression"
+   ],
+   "code": [
+    "LogisticRegression"
+   ]
+  },
+  {
+   "id": "model_linreg",
+   "name": "Linear regression",
+   "stage": "model",
+   "phrases": [
+    "linear regression",
+    "ordinary least squares"
+   ],
+   "code": [
+    "LinearRegression",
+    "OLS"
+   ]
+  },
+  {
+   "id": "model_regularized",
+   "name": "Ridge / Lasso / Elastic net",
+   "stage": "model",
+   "phrases": [
+    "ridge regression",
+    "lasso",
+    "elastic net"
+   ],
+   "code": [
+    "Ridge",
+    "Lasso",
+    "ElasticNet"
+   ]
+  },
+  {
+   "id": "model_tree",
+   "name": "Decision tree",
+   "stage": "model",
+   "phrases": [
+    "decision tree"
+   ],
+   "code": [
+    "DecisionTreeClassifier",
+    "DecisionTreeRegressor"
+   ]
+  },
+  {
+   "id": "model_rf",
+   "name": "Random forest",
+   "stage": "model",
+   "phrases": [
+    "random forest"
+   ],
+   "code": [
+    "RandomForestClassifier",
+    "RandomForestRegressor"
+   ]
+  },
+  {
+   "id": "model_extratrees",
+   "name": "Extra trees",
+   "stage": "model",
+   "phrases": [
+    "extra trees",
+    "extremely randomized trees"
+   ],
+   "code": [
+    "ExtraTreesClassifier",
+    "ExtraTreesRegressor"
+   ]
+  },
+  {
+   "id": "model_gbm",
+   "name": "Gradient boosting (sklearn)",
+   "stage": "model",
+   "phrases": [
+    "gradient boosting",
+    "gradient boosted",
+    "gbdt"
+   ],
+   "code": [
+    "GradientBoostingClassifier",
+    "GradientBoostingRegressor",
+    "HistGradientBoostingClassifier",
+    "HistGradientBoostingRegressor"
+   ]
+  },
+  {
+   "id": "model_xgboost",
+   "name": "XGBoost",
+   "stage": "model",
+   "phrases": [
+    "xgboost"
+   ],
+   "code": [
+    "XGBClassifier",
+    "XGBRegressor",
+    "DMatrix"
+   ]
+  },
+  {
+   "id": "model_lightgbm",
+   "name": "LightGBM",
+   "stage": "model",
+   "phrases": [
+    "lightgbm",
+    "lgbm"
+   ],
+   "code": [
+    "LGBMClassifier",
+    "LGBMRegressor"
+   ]
+  },
+  {
+   "id": "model_catboost",
+   "name": "CatBoost",
+   "stage": "model",
+   "phrases": [
+    "catboost"
+   ],
+   "code": [
+    "CatBoostClassifier",
+    "CatBoostRegressor"
+   ]
+  },
+  {
+   "id": "model_adaboost",
+   "name": "AdaBoost",
+   "stage": "model",
+   "phrases": [
+    "adaboost"
+   ],
+   "code": [
+    "AdaBoostClassifier",
+    "AdaBoostRegressor"
+   ]
+  },
+  {
+   "id": "model_svm",
+   "name": "Support vector machine",
+   "stage": "model",
+   "phrases": [
+    "support vector machine",
+    "support vector machines",
+    "svm"
+   ],
+   "code": [
+    "SVC",
+    "SVR",
+    "LinearSVC"
+   ]
+  },
+  {
+   "id": "model_knn",
+   "name": "k-nearest neighbours",
+   "stage": "model",
+   "phrases": [
+    "k-nearest neighbors",
+    "k-nearest neighbours",
+    "knn classifier",
+    "nearest neighbor classifier"
+   ],
+   "code": [
+    "KNeighborsClassifier",
+    "KNeighborsRegressor"
+   ]
+  },
+  {
+   "id": "model_nb",
+   "name": "Naive Bayes",
+   "stage": "model",
+   "phrases": [
+    "naive bayes"
+   ],
+   "code": [
+    "GaussianNB",
+    "MultinomialNB",
+    "BernoulliNB"
+   ]
+  },
+  {
+   "id": "model_mlp",
+   "name": "Multilayer perceptron",
+   "stage": "model",
+   "phrases": [
+    "multilayer perceptron",
+    "multi-layer perceptron",
+    "feed-forward neural network",
+    "feedforward neural network",
+    "fully connected network",
+    "mlp"
+   ],
+   "code": [
+    "MLPClassifier",
+    "MLPRegressor",
+    "Dense"
+   ]
+  },
+  {
+   "id": "model_cnn",
+   "name": "Convolutional network",
+   "stage": "model",
+   "phrases": [
+    "convolutional neural network",
+    "cnn"
+   ],
+   "code": [
+    "Conv1d",
+    "Conv2d",
+    "Conv1D",
+    "Conv2D"
+   ]
+  },
+  {
+   "id": "model_rnn",
+   "name": "LSTM / GRU",
+   "stage": "model",
+   "phrases": [
+    "lstm",
+    "long short-term memory",
+    "recurrent neural network",
+    "gru"
+   ],
+   "code": [
+    "LSTM",
+    "GRU",
+    "RNN"
+   ]
+  },
+  {
+   "id": "model_transformer",
+   "name": "Transformer / attention",
+   "stage": "model",
+   "phrases": [
+    "transformer model",
+    "transformer architecture",
+    "self-attention",
+    "attention mechanism"
+   ],
+   "code": [
+    "TransformerEncoder",
+    "MultiheadAttention",
+    "MultiHeadAttention"
+   ]
+  },
+  {
+   "id": "model_tabnet",
+   "name": "TabNet",
+   "stage": "model",
+   "phrases": [
+    "tabnet"
+   ],
+   "code": [
+    "TabNetClassifier",
+    "TabNetRegressor"
+   ]
+  },
+  {
+   "id": "model_gnn",
+   "name": "Graph neural network",
+   "stage": "model",
+   "phrases": [
+    "graph neural network",
+    "gnn",
+    "graphsage",
+    "graph convolutional network",
+    "gcn",
+    "graph attention network"
+   ],
+   "code": [
+    "SAGEConv",
+    "GCNConv",
+    "GATConv"
+   ]
+  },
+  {
+   "id": "model_iforest",
+   "name": "Isolation forest",
+   "stage": "model",
+   "phrases": [
+    "isolation forest"
+   ],
+   "code": [
+    "IsolationForest"
+   ]
+  },
+  {
+   "id": "model_autoencoder",
+   "name": "Autoencoder",
+   "stage": "model",
+   "phrases": [
+    "autoencoder",
+    "auto-encoder"
+   ],
+   "code": []
+  },
+  {
+   "id": "model_stacking",
+   "name": "Stacking ensemble",
+   "stage": "model",
+   "phrases": [
+    "stacking",
+    "stacked ensemble",
+    "stacked generalization"
+   ],
+   "code": [
+    "StackingClassifier",
+    "StackingRegressor"
+   ]
+  },
+  {
+   "id": "model_voting",
+   "name": "Voting ensemble",
+   "stage": "model",
+   "phrases": [
+    "voting classifier",
+    "soft voting",
+    "majority voting"
+   ],
+   "code": [
+    "VotingClassifier",
+    "VotingRegressor"
+   ]
+  },
+  {
+   "id": "train_class_weights",
+   "name": "Class weights / cost-sensitive",
+   "stage": "training",
+   "phrases": [
+    "class weights",
+    "class weighting",
+    "cost-sensitive",
+    "weighted loss"
+   ],
+   "code": [
+    "compute_class_weight",
+    "class_weight",
+    "scale_pos_weight"
+   ]
+  },
+  {
+   "id": "train_adam",
+   "name": "Adam optimiser",
+   "stage": "training",
+   "phrases": [
+    "adam optimizer",
+    "adam optimiser",
+    "adamw"
+   ],
+   "code": [
+    "Adam",
+    "AdamW"
+   ]
+  },
+  {
+   "id": "train_sgd",
+   "name": "SGD optimiser",
+   "stage": "training",
+   "phrases": [
+    "stochastic gradient descent"
+   ],
+   "code": [
+    "SGD"
+   ]
+  },
+  {
+   "id": "train_early_stopping",
+   "name": "Early stopping",
+   "stage": "training",
+   "phrases": [
+    "early stopping"
+   ],
+   "code": [
+    "EarlyStopping",
+    "early_stopping_rounds",
+    "early_stopping"
+   ]
+  },
+  {
+   "id": "train_dropout",
+   "name": "Dropout",
+   "stage": "training",
+   "phrases": [
+    "dropout"
+   ],
+   "code": [
+    "Dropout"
+   ]
+  },
+  {
+   "id": "train_batchnorm",
+   "name": "Batch normalisation",
+   "stage": "training",
+   "phrases": [
+    "batch normalization",
+    "batch normalisation"
+   ],
+   "code": [
+    "BatchNorm1d",
+    "BatchNorm2d",
+    "BatchNormalization"
+   ]
+  },
+  {
+   "id": "train_lr_schedule",
+   "name": "Learning-rate schedule",
+   "stage": "training",
+   "phrases": [
+    "learning rate schedule",
+    "learning rate decay",
+    "cosine annealing",
+    "step decay"
+   ],
+   "code": [
+    "StepLR",
+    "CosineAnnealingLR",
+    "ReduceLROnPlateau",
+    "LearningRateScheduler"
+   ]
+  },
+  {
+   "id": "train_grid_search",
+   "name": "Grid search",
+   "stage": "training",
+   "phrases": [
+    "grid search"
+   ],
+   "code": [
+    "GridSearchCV"
+   ]
+  },
+  {
+   "id": "train_random_search",
+   "name": "Random search",
+   "stage": "training",
+   "phrases": [
+    "random search",
+    "randomized search"
+   ],
+   "code": [
+    "RandomizedSearchCV"
+   ]
+  },
+  {
+   "id": "train_bayes_opt",
+   "name": "Bayesian optimisation",
+   "stage": "training",
+   "phrases": [
+    "bayesian optimization",
+    "bayesian optimisation",
+    "optuna",
+    "hyperopt",
+    "tree-structured parzen estimator"
+   ],
+   "code": [
+    "create_study",
+    "BayesSearchCV",
+    "fmin"
+   ]
+  },
+  {
+   "id": "train_focal_loss",
+   "name": "Focal loss",
+   "stage": "training",
+   "phrases": [
+    "focal loss"
+   ],
+   "code": [
+    "FocalLoss",
+    "sigmoid_focal_loss",
+    "focal_loss"
+   ]
+  },
+  {
+   "id": "train_ce_loss",
+   "name": "Cross-entropy loss",
+   "stage": "training",
+   "phrases": [
+    "binary cross-entropy",
+    "cross-entropy loss",
+    "cross entropy loss"
+   ],
+   "code": [
+    "BCELoss",
+    "BCEWithLogitsLoss",
+    "CrossEntropyLoss",
+    "binary_crossentropy"
+   ]
+  },
+  {
+   "id": "train_weight_decay",
+   "name": "L2 regularisation / weight decay",
+   "stage": "training",
+   "phrases": [
+    "l2 regularization",
+    "l2 regularisation",
+    "weight decay"
+   ],
+   "code": [
+    "weight_decay"
+   ]
+  },
+  {
+   "id": "cv_kfold",
+   "name": "k-fold cross-validation",
+   "stage": "evaluation",
+   "phrases": [
+    "k-fold",
+    "cross-validation",
+    "cross validation",
+    "10-fold",
+    "5-fold"
+   ],
+   "code": [
+    "KFold",
+    "cross_val_score",
+    "cross_validate",
+    "cross_val_predict"
+   ]
+  },
+  {
+   "id": "cv_stratified",
+   "name": "Stratified splitting",
+   "stage": "evaluation",
+   "phrases": [
+    "stratified k-fold",
+    "stratified sampling",
+    "stratified split",
+    "stratified cross-validation"
+   ],
+   "code": [
+    "StratifiedKFold",
+    "StratifiedShuffleSplit",
+    "stratify"
+   ]
+  },
+  {
+   "id": "eval_accuracy",
+   "name": "Accuracy",
+   "stage": "evaluation",
+   "phrases": [
+    "accuracy"
+   ],
+   "code": [
+    "accuracy_score"
+   ]
+  },
+  {
+   "id": "eval_precision_recall",
+   "name": "Precision / recall",
+   "stage": "evaluation",
+   "phrases": [
+    "precision",
+    "recall"
+   ],
+   "code": [
+    "precision_score",
+    "recall_score",
+    "precision_recall_curve",
+    "classification_report"
+   ]
+  },
+  {
+   "id": "eval_f1",
+   "name": "F1 score",
+   "stage": "evaluation",
+   "phrases": [
+    "f1-score",
+    "f1 score",
+    "f-measure",
+    "f1"
+   ],
+   "code": [
+    "f1_score"
+   ]
+  },
+  {
+   "id": "eval_roc_auc",
+   "name": "ROC-AUC",
+   "stage": "evaluation",
+   "phrases": [
+    "roc-auc",
+    "auc-roc",
+    "roc auc",
+    "area under the roc curve",
+    "area under the receiver operating characteristic",
+    "roc curve",
+    "auc"
+   ],
+   "code": [
+    "roc_auc_score",
+    "roc_curve"
+   ]
+  },
+  {
+   "id": "eval_pr_auc",
+   "name": "PR-AUC / average precision",
+   "stage": "evaluation",
+   "phrases": [
+    "pr-auc",
+    "auprc",
+    "average precision",
+    "precision-recall auc",
+    "area under the precision-recall curve"
+   ],
+   "code": [
+    "average_precision_score"
+   ]
+  },
+  {
+   "id": "eval_confusion",
+   "name": "Confusion matrix",
+   "stage": "evaluation",
+   "phrases": [
+    "confusion matrix"
+   ],
+   "code": [
+    "confusion_matrix",
+    "ConfusionMatrixDisplay"
+   ]
+  },
+  {
+   "id": "eval_mcc",
+   "name": "Matthews correlation",
+   "stage": "evaluation",
+   "phrases": [
+    "matthews correlation coefficient",
+    "mcc"
+   ],
+   "code": [
+    "matthews_corrcoef"
+   ]
+  },
+  {
+   "id": "eval_regression_error",
+   "name": "RMSE / MAE / MSE",
+   "stage": "evaluation",
+   "phrases": [
+    "rmse",
+    "root mean squared error",
+    "root mean square error",
+    "mean absolute error",
+    "mae",
+    "mean squared error"
+   ],
+   "code": [
+    "mean_squared_error",
+    "mean_absolute_error",
+    "root_mean_squared_error"
+   ]
+  },
+  {
+   "id": "eval_r2",
+   "name": "R-squared",
+   "stage": "evaluation",
+   "phrases": [
+    "r-squared",
+    "coefficient of determination"
+   ],
+   "code": [
+    "r2_score"
+   ]
+  },
+  {
+   "id": "eval_calibration",
+   "name": "Calibration",
+   "stage": "evaluation",
+   "phrases": [
+    "calibration",
+    "brier score",
+    "expected calibration error",
+    "reliability diagram"
+   ],
+   "code": [
+    "brier_score_loss",
+    "calibration_curve",
+    "CalibratedClassifierCV"
+   ]
+  },
+  {
+   "id": "eval_shap",
+   "name": "SHAP explanations",
+   "stage": "evaluation",
+   "phrases": [
+    "shap",
+    "shapley values",
+    "shapley additive explanations"
+   ],
+   "code": [
+    "TreeExplainer",
+    "shap_values"
+   ]
+  },
+  {
+   "id": "eval_lime",
+   "name": "LIME explanations",
+   "stage": "evaluation",
+   "phrases": [
+    "lime"
+   ],
+   "code": [
+    "LimeTabularExplainer"
+   ]
+  },
+  {
+   "id": "eval_significance",
+   "name": "Statistical significance tests",
+   "stage": "evaluation",
+   "phrases": [
+    "t-test",
+    "wilcoxon",
+    "mcnemar",
+    "statistical significance",
+    "statistically significant"
+   ],
+   "code": [
+    "ttest_ind",
+    "ttest_rel",
+    "wilcoxon",
+    "mcnemar"
+   ]
+  }
+ ]
+}
