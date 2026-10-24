@@ -1,0 +1,12 @@
+{
+  "name": "researchtrail-ui",
+  "private": true,
+  "description": "Builds web/app.css from web/src/input.css with Tailwind. Only needed if you change the UI styles; the compiled CSS is already in the repo.",
+  "scripts": {
+    "css": "tailwindcss -i web/src/input.css -o web/app.css --minify",
+    "css:watch": "tailwindcss -i web/src/input.css -o web/app.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
