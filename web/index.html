@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ResearchTrail</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script>try { const t = localStorage.getItem('rt-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body class="min-h-screen">
+  <div id="shell" class="flex min-h-screen" hidden>
+    <aside class="sticky top-0 flex h-screen w-[244px] flex-none flex-col border-r border-line bg-surface/70 px-3 py-4 max-md:hidden" aria-label="Main navigation">
+      <a href="#/overview" class="mb-5 flex items-center gap-2.5 px-2 text-[16px] font-semibold text-ink" aria-label="ResearchTrail overview">
+        <svg viewBox="0 0 32 32" class="h-7 w-7" aria-hidden="true"><path d="M5 21 C10 21 11 11 16 11 S22 21 27 21" fill="none" stroke="rgb(var(--accent))" stroke-width="2.4" stroke-linecap="round"/><circle cx="5" cy="21" r="3" fill="rgb(var(--accent))"/><circle cx="16" cy="11" r="3" fill="rgb(var(--accent))"/><circle cx="27" cy="21" r="3.4" fill="rgb(var(--mine))"/></svg>
+        ResearchTrail
+      </a>
+      <button id="projectBtn" class="mb-4 rounded-lg border border-line bg-raised px-3 py-2 text-left transition hover:border-ink3/60" title="Switch project">
+        <div class="label">Project</div>
+        <div id="projectName" class="truncate text-[14px] font-medium">—</div>
+      </button>
+      <nav class="flex flex-col gap-0.5" id="nav">
+        <a class="nav-item" href="#/overview" data-view="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 17c4 0 4-10 9-10s5 10 9 10"/><circle cx="3" cy="17" r="1.5"/><circle cx="21" cy="17" r="1.5"/></svg>Overview</a>
+        <a class="nav-item" href="#/papers" data-view="papers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg>Papers <span id="paperCount" class="ml-auto text-[12px] text-ink3"></span></a>
+        <a class="nav-item" href="#/ask" data-view="ask"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Ask your papers</a>
+        <a class="nav-item" href="#/compare" data-view="compare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="1.6" fill="currentColor"/><circle cx="15" cy="12" r="1.6" fill="currentColor"/><circle cx="9" cy="18" r="1.6" fill="currentColor"/></svg>Compare</a>
+        <a class="nav-item" href="#/code" data-view="code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></svg>Code history</a>
+        <a class="nav-item" href="#/packs" data-view="packs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg>Prompt packs</a>
+      </nav>
+      <div class="mt-auto flex flex-col gap-1 border-t border-line pt-3">
+        <a class="nav-item" href="#/settings" data-view="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></svg>Settings</a>
+        <div class="flex items-center justify-between px-3 py-1.5 text-[12.5px] text-ink3">
+          <span id="live" class="flex items-center gap-2"><span class="dot !h-2 !w-2 bg-ink3"></span>Connecting</span>
+          <button id="themeBtn" class="btn-quiet rounded px-1.5 py-0.5" title="Switch light, dark or system theme">Theme</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex min-w-0 flex-1 flex-col">
+      <header class="sticky top-0 z-20 border-b border-line bg-bg/85 backdrop-blur">
+        <div class="flex items-center gap-4 px-6 py-3 max-md:px-4">
+          <div class="min-w-0 flex-1">
+            <h1 id="viewTitle" class="truncate text-[19px] font-semibold">Overview</h1>
+            <p id="viewSub" class="truncate text-[13px] text-ink3"></p>
+          </div>
+          <form id="addForm" class="flex w-[min(460px,48vw)] items-center gap-2" autocomplete="off">
+            <label for="addLink" class="sr-only">Paper link</label>
+            <input id="addLink" class="input" placeholder="Paste a paper link: arXiv, DOI, journal, blog or GitHub">
+            <button class="btn btn-primary whitespace-nowrap" type="submit">Add paper</button>
+          </form>
+        </div>
+        <div id="jobs" class="flex flex-col"></div>
+      </header>
+      <main id="main" class="flex-1 px-6 py-6 max-md:px-4"></main>
+    </div>
+  </div>
+
+  <div id="welcome" class="mx-auto flex min-h-screen max-w-[720px] flex-col justify-center px-6 py-12" hidden></div>
+  <div id="drawer" class="fixed inset-0 z-40" hidden>
+    <div data-close class="absolute inset-0 bg-ink/20 backdrop-blur-[2px]"></div>
+    <aside class="absolute right-0 top-0 flex h-full w-[min(560px,100%)] flex-col border-l border-line bg-surface shadow-soft view-enter" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="flex items-start gap-3 border-b border-line px-5 py-4"><h2 id="drawerTitle" class="flex-1 text-[16px] font-semibold"></h2><button class="btn btn-quiet" data-close aria-label="Close">Close</button></div>
+      <div id="drawerBody" class="scroll-thin flex-1 overflow-y-auto px-5 py-4"></div>
+    </aside>
+  </div>
+  <div id="toasts" class="pointer-events-none fixed bottom-5 right-5 z-50 flex w-[min(420px,90vw)] flex-col gap-2" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

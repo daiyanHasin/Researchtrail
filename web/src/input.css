@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ResearchTrail tokens. Calm eucalyptus and mist for the interface; one dusk
+   lavender reserved for "Mine", so your own work always reads as yours. */
+:root {
+  --bg: 236 241 237;       /* mist */
+  --surface: 248 250 247;
+  --raised: 255 255 255;
+  --sunken: 228 234 229;
+  --line: 211 220 213;
+  --ink: 30 43 39;
+  --ink2: 83 100 93;
+  --ink3: 128 143 136;
+  --accent: 63 125 110;    /* eucalyptus */
+  --accentink: 255 255 255;
+  --mine: 122 116 184;     /* dusk lavender */
+  --warn: 176 128 52;
+  --bad: 172 88 80;
+  --good: 72 132 96;
+  --shadow: 32 52 44;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: 17 25 23; --surface: 23 33 30; --raised: 30 42 38; --sunken: 14 21 19; --line: 44 58 53;
+    --ink: 226 234 229; --ink2: 157 173 166; --ink3: 112 128 121;
+    --accent: 121 185 168; --accentink: 14 30 26; --mine: 169 163 224; --warn: 214 170 96; --bad: 224 136 126; --good: 128 190 150;
+    --shadow: 0 0 0; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: 17 25 23; --surface: 23 33 30; --raised: 30 42 38; --sunken: 14 21 19; --line: 44 58 53;
+  --ink: 226 234 229; --ink2: 157 173 166; --ink3: 112 128 121;
+  --accent: 121 185 168; --accentink: 14 30 26; --mine: 169 163 224; --warn: 214 170 96; --bad: 224 136 126; --good: 128 190 150;
+  --shadow: 0 0 0; color-scheme: dark;
+}
+
+@layer base {
+  [hidden] { display: none !important; }
+  html, body { @apply bg-bg text-ink font-sans antialiased; }
+  body { font-size: 15px; line-height: 1.5; }
+  ::selection { background: rgb(var(--accent) / 0.22); }
+  :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 2px; border-radius: 6px; }
+  h1, h2, h3 { letter-spacing: -0.01em; }
+  code, pre { @apply font-mono; font-size: 0.86em; }
+}
+
+@layer components {
+  .nav-item { @apply flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-[14px] text-ink2 transition-colors hover:bg-sunken hover:text-ink; }
+  .nav-item[aria-current="page"] { @apply bg-raised text-ink shadow-soft; }
+  .nav-item svg { @apply h-[18px] w-[18px] flex-none opacity-80; }
+  .panel { @apply rounded-card border border-line bg-surface; }
+  .panel-raised { @apply rounded-card border border-line bg-raised shadow-soft; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-raised px-3 py-1.5 text-[14px] font-medium text-ink transition hover:border-ink3/60 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply border-transparent bg-accent text-accentink hover:brightness-105; }
+  .btn-quiet { @apply border-transparent bg-transparent text-ink2 hover:bg-sunken hover:text-ink; }
+  .btn-danger { @apply text-bad hover:border-bad/50; }
+  .input { @apply w-full rounded-lg border border-line bg-raised px-3 py-2 text-[14px] text-ink placeholder:text-ink3 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border border-line bg-raised px-2.5 py-0.5 text-[12.5px] text-ink2; }
+  .chip-accent { @apply border-accent/30 bg-accent/10 text-ink; }
+  .chip-mine { @apply border-mine/40 bg-mine/10 text-ink; }
+  .label { @apply text-[12.5px] font-medium text-ink3; }
+  .paper-text { @apply font-serif text-[15.5px] leading-[1.62] text-ink; }
+  .seg { @apply inline-flex rounded-lg border border-line bg-sunken p-0.5; }
+  .seg button { @apply rounded-md px-3 py-1 text-[13px] text-ink2 transition; }
+  .seg button[aria-pressed="true"] { @apply bg-raised text-ink shadow-soft; }
+  .kbd { @apply rounded border border-line bg-sunken px-1.5 text-[11px] text-ink3; }
+  .scroll-thin { scrollbar-width: thin; scrollbar-color: rgb(var(--line)) transparent; }
+  .diff-add { background: rgb(var(--good) / 0.12); }
+  .diff-del { background: rgb(var(--bad) / 0.12); }
+  .dot { @apply inline-block h-3.5 w-3.5 rounded-full; }
+}
+
+/* Motion: one orchestrated moment (the trail drawing itself), plus motion that
+   answers an action. Everything stops for people who prefer less motion. */
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes breathe { 0%, 100% { opacity: 0.45; transform: scale(1); } 50% { opacity: 0; transform: scale(1.5); } }
+@keyframes sheen { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+@keyframes pop { 0% { transform: scale(0.6); opacity: 0; } 70% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
+.trail-path { stroke-dasharray: 1600; stroke-dashoffset: 1600; animation: draw 1.6s cubic-bezier(.6,.1,.2,1) .1s forwards; }
+.station { opacity: 0; animation: rise .5s ease-out forwards; }
+.arc { transition: stroke-dashoffset 1.1s cubic-bezier(.3,.7,.2,1); }
+.pulse-ring { transform-box: fill-box; transform-origin: center; animation: breathe 1.8s ease-out 2; }
+.view-enter { animation: rise .28s ease-out; }
+.working { background: linear-gradient(90deg, transparent, rgb(var(--accent) / 0.18), transparent) 0 0 / 200% 100%; animation: sheen 1.6s linear infinite; }
+.cell-dot { animation: pop .35s ease-out backwards; }
+.toast-in { animation: rise .25s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .trail-path { stroke-dashoffset: 0; }
+  .station { opacity: 1; }
+}
